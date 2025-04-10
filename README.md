@@ -75,4 +75,26 @@ pipeline {
             echo 'Build failed. Check logs and reports.'
         }
     }
+
+
+    stage('Update README') {
+    when {
+        expression { fileExists('testScan.json') }
+    }
+    steps {
+        script {
+            def testJson = readJSON file: 'testScan.json'
+            def passed = testJson.testsPassed ?: 0
+            def total = testJson.totalTests ?: 0
+            def coverage = testJson.coverage ?: 'N/A'
+
+            def readme = readFile 'README.md'
+            readme = readme
+                .replaceAll(/Tests\s+\|\s+\d+\/\d+/, "Tests | ${passed}/${total}")
+                .replaceAll(/Coverage\s+\|\s+\d+(\.\d+)?%/, "Coverage | ${coverage}%")
+            writeFile file: 'README.md', text: readme
+        }
+    }
+}
+
 }
