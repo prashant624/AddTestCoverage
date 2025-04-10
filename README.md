@@ -96,5 +96,9 @@ pipeline {
         }
     }
 }
-
+eature	innerHTML	textContent
+Displays content	Yes	Yes
+Treats content as HTML	✅ Yes (risky)	❌ No (safe)
+Executes scripts	✅ Yes — big risk	❌ Never
+Safe for user/API data	❌ No	✅ Yes
 }
