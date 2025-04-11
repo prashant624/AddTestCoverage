@@ -8,7 +8,7 @@ pipeline {
         GIT_COMMITTER_NAME = 'jenkins'
         GIT_COMMITTER_EMAIL = 'ci@jenkins.com'
     }
-
+ye dosto 
     stages {
         stage('Install Dependencies') {
             steps {
